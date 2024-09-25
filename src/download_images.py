@@ -4,7 +4,6 @@ import os
 import time
 import logging
 
-# Set up logging
 logging.basicConfig(filename='image_scraper.log', level=logging.ERROR)
 
 def get_image_urls(query, num_images):
