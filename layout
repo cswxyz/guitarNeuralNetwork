@@ -1,0 +1,18 @@
+guitar_model_recognition/
+│
+├── data/                                 # Folder for the downloaded images
+│   ├── fender_jaguar_images/
+│   ├── fender_telecaster_images/
+│   └── fender_stratocaster_images/
+│
+├── models/                               # Folder for saving the trained model
+│   └── saved_model.h5                    # Saved model after training
+│
+├── src/                                  # Folder for all Python scripts
+│   ├── download_images.py                # Script to download images
+│   ├── preprocessing.py                     # Script for preprocessing images
+│   ├── train_model.py                    # Script to train the machine learning model
+│   └── evaluate_model.py                 # Script to evaluate the model
+│
+├── requirements.txt                      # Python dependencies
+└── README.md                             # Project documentation
