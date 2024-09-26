@@ -24,7 +24,7 @@ def preprocess_folder(input_folder, output_folder, size=(512, 512)):
     # Here we loop through the input_folder to process each image
     for file_name in os.listdir(input_folder):
         if file_name.endswith(".jpg"):
-            image_path = os.path.join(input_folder, file_name)
+            image_path = os.path.join(input_folder, file_name) # nnnn
             output_path = os.path.join(output_folder, file_name)
             preprocess(image_path, output_path, size)
 
