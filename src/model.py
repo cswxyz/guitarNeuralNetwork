@@ -16,7 +16,7 @@ def build_model(input_shape=(512, 512, 3)):
 
     model.add(layers.BatchNormalization())
 
-    model.add(layers.Dense(128, activation='relu'))
+    model.add(layers.Dense(64, activation='relu'))
 
     model.add(layers.BatchNormalization())
 
