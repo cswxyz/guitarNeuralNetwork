@@ -3,16 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Classifier - Dark Blue Aesthetic</title>
+    <title>Fender Guitar Classifier</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <div id="particles-js"></div>
 
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Main Form -->
+    <div class="container content">
+        <h1>Fender Guitar Classifier</h1>
+        <form id="upload-form" onsubmit="submitForm(event)" enctype="multipart/form-data">
+            <input type="file" id="file-input" name="file" accept="image/*" onchange="previewImage()" required>
+            <br><br>
+
+            <img id="image-preview" style="display:none; max-width: 300px; max-height: 300px; border-radius: 8px;" />
+            <br><br>
+
+            <button type="submit" class="large-button">Upload and Classify</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
 
     <script>
-        // JavaScript function to preview the uploaded image before submitting
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 150,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ffffff"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 8,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 20,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+
+    <script src="static/particles-config.js"></script>
+
+    <script>
+        // Preview the uploaded image before submitting
         function previewImage() {
             const file = document.getElementById("file-input").files[0];
             const preview = document.getElementById("image-preview");
@@ -30,7 +151,7 @@
             }
         }
 
-        // JavaScript function to display the result from the backend
+        // Display the result from the backend
         function displayResult(predictedClass, confidence) {
             const resultContainer = document.getElementById("result");
             resultContainer.innerHTML = `
@@ -39,7 +160,7 @@
             `;
         }
 
-        // JavaScript function to submit the form via AJAX
+        // Submit the form via AJAX
         function submitForm(event) {
             event.preventDefault();
 
@@ -65,33 +186,5 @@
             .catch(error => console.error('Error:', error));
         }
     </script>
-</head>
-<body>
-
-    <!-- Particle container for JSON effect -->
-    <div class="particle-container"></div>
-
-    <!-- Main Form -->
-    <div class="container">
-        <h1>Upload an Image for Classification</h1>
-        <form id="upload-form" onsubmit="submitForm(event)" enctype="multipart/form-data">
-            <!-- File input for image upload -->
-            <input type="file" id="file-input" name="file" accept="image/*" onchange="previewImage()" required>
-            <br><br>
-
-            <!-- Image preview -->
-            <img id="image-preview" style="display:none; max-width: 100%; border-radius: 8px;" />
-            <br><br>
-
-            <!-- Submit button -->
-            <button type="submit">Upload and Classify</button>
-        </form>
-
-        <!-- Result container -->
-        <div id="result"></div>
-    </div>
-
-    <!-- Link to external JavaScript for particles -->
-    <script src="particles.js"></script>
 </body>
 </html>
