@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier - Dark Blue Aesthetic</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // JavaScript function to preview the uploaded image before submitting
+        function previewImage() {
+            const file = document.getElementById("file-input").files[0];
+            const preview = document.getElementById("image-preview");
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                preview.src = reader.result;
+                preview.style.display = "block";  // Show the image once it's loaded
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+
+        // JavaScript function to display the result from the backend
+        function displayResult(predictedClass, confidence) {
+            const resultContainer = document.getElementById("result");
+            resultContainer.innerHTML = `
+                <h2>Prediction: Class ${predictedClass}</h2>
+                <h3>Confidence: ${(confidence * 100).toFixed(2)}%</h3>
+            `;
+        }
+
+        // JavaScript function to submit the form via AJAX
+        function submitForm(event) {
+            event.preventDefault();
+
+            const formData = new FormData();
+            const fileInput = document.getElementById("file-input");
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            formData.append("file", file);
+
+            fetch("/", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    displayResult(data.predicted_class, data.confidence);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Particle container for JSON effect -->
+    <div class="particle-container"></div>
+
+    <!-- Main Form -->
+    <div class="container">
+        <h1>Upload an Image for Classification</h1>
+        <form id="upload-form" onsubmit="submitForm(event)" enctype="multipart/form-data">
+            <!-- File input for image upload -->
+            <input type="file" id="file-input" name="file" accept="image/*" onchange="previewImage()" required>
+            <br><br>
+
+            <!-- Image preview -->
+            <img id="image-preview" style="display:none; max-width: 100%; border-radius: 8px;" />
+            <br><br>
+
+            <!-- Submit button -->
+            <button type="submit">Upload and Classify</button>
+        </form>
+
+        <!-- Result container -->
+        <div id="result"></div>
+    </div>
+
+    <!-- Link to external JavaScript for particles -->
+    <script src="particles.js"></script>
+</body>
+</html>
