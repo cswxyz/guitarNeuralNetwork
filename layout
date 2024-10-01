@@ -1,17 +1,33 @@
-guitar_model_recognition/
+guitarNeuralNetwork/
 │
 ├── data/
-│   ├── processed_data/ -> jag,strat,tele
-│   ├── raw_data/ -> jag,strat,tele
+│   ├── processed_data
+│   │    ├── fender_jaguar
+│   │    ├── fender_stratocaster    (500, 512x512 images)
+│   │    └── fender_telecaster
+│   ├── raw_data
+│   │    ├── fender_jaguar
+│   │    ├── fender_stratocaster    (500 raw images)
+│   │    └── fender_telecaster
+│   └── uploads                     (Temporarily saves uploaded images for model analysis)
 │
 ├── models/
-│   └── saved_model.h5
+│   └── saved_model.keras
 │
 ├── src/
-│   ├── download_images.py
-│   ├── preprocessing.py
-│   ├── train_model.py
-│   └── evaluate_model.py
+│   ├── download_images.py          (Data gatherer)
+│   ├── model.py                    (CNN Model definition)
+│   ├── preprocessing.py            (Image preprocessor)
+│   └── train_model.py              (Model trainer/evaluator)
 │
-├── requirements.txt
-└── README.md
+├── view/
+│   ├── static
+│   │    ├── style.css              (Web styling)
+│   ├── templates
+│   │    └── index.html             (Page design, includes jsParticles)
+│   └── api.py                      (Temporarily saves uploaded images for model analysis)
+│
+├── image_scraper.log
+├── layout.txt
+├── README.md
+└── requirements.txt
