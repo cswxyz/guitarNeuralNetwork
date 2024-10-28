@@ -35,7 +35,7 @@ def allowed_file(filename):
 
 def preprocess_image(image_path):
     # Load and preprocess the image
-    image = load_img(image_path, target_size=(512, 512))  # Resize to match model input
+    image = load_img(image_path, target_size=(512, 512))
     image = img_to_array(image)
     image = np.expand_dims(image, axis=0)  # Add batch dimension
     image = image / 255.0  # Normalize to [0, 1]
