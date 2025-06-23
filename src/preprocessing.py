@@ -18,24 +18,31 @@ def preprocess(image_path, output_path, size=(512, 512)):
 # Appends the new directories with their corresponding images
 # Once they are sorted, preprocess_image() is called to resize them
 def preprocess_folder(input_folder, output_folder, size=(512, 512)):
+    # Skip processing if output_folder already exists and is not empty
+    if os.path.exists(output_folder) and len(os.listdir(output_folder)) > 0:
+        print(f"Skipping {output_folder}: already processed.")
+        return
+
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    # Here we loop through the input_folder to process each image
     for file_name in os.listdir(input_folder):
         if file_name.endswith(".jpg"):
-            image_path = os.path.join(input_folder, file_name) #
+            image_path = os.path.join(input_folder, file_name)
             output_path = os.path.join(output_folder, file_name)
             preprocess(image_path, output_path, size)
 
-# Call preprocess_folder for each guitar type (matching download_images.py queries)
-preprocess_folder('data/raw_data/fender_jaguar', 'processed_data/fender_jaguar')
-preprocess_folder('data/raw_data/fender_telecaster', 'processed_data/fender_telecaster')
-preprocess_folder('data/raw_data/fender_stratocaster', 'processed_data/fender_stratocaster')
-preprocess_folder('data/raw_data/fender_jazzmaster', 'processed_data/fender_jazzmaster')
-preprocess_folder('data/raw_data/fender_mustang', 'processed_data/fender_mustang')
-preprocess_folder('data/raw_data/fender_duosonic', 'processed_data/fender_duosonic')
-preprocess_folder('data/raw_data/fender_leadii', 'processed_data/fender_leadii')
-preprocess_folder('data/raw_data/fender_toronado', 'processed_data/fender_toronado')
-preprocess_folder('data/raw_data/fender_performer', 'processed_data/fender_performer')
-preprocess_folder('data/raw_data/fender_starcaster', 'processed_data/fender_starcaster')
+# List of all guitar models to check
+guitar_models = [
+    "fender_jaguar", "fender_telecaster", "fender_stratocaster", "fender_jazzmaster",
+    "fender_mustang", "fender_duosonic", "fender_leadii", "fender_toronado",
+    "fender_performer", "fender_starcaster"
+]
+
+for model in guitar_models:
+    input_dir = f"data/raw_data/{model}"
+    output_dir = f"processed_data/{model}"
+    if not os.path.exists(input_dir):
+        print(f"Skipping {model}: {input_dir} does not exist.")
+        continue
+    preprocess_folder(input_dir, output_dir)
