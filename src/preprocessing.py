@@ -28,7 +28,14 @@ def preprocess_folder(input_folder, output_folder, size=(512, 512)):
             output_path = os.path.join(output_folder, file_name)
             preprocess(image_path, output_path, size)
 
-# Call preprocess_folder with separate paths for each guitar type
+# Call preprocess_folder for each guitar type (matching download_images.py queries)
 preprocess_folder('data/raw_data/fender_jaguar', 'processed_data/fender_jaguar')
 preprocess_folder('data/raw_data/fender_telecaster', 'processed_data/fender_telecaster')
 preprocess_folder('data/raw_data/fender_stratocaster', 'processed_data/fender_stratocaster')
+preprocess_folder('data/raw_data/fender_jazzmaster', 'processed_data/fender_jazzmaster')
+preprocess_folder('data/raw_data/fender_mustang', 'processed_data/fender_mustang')
+preprocess_folder('data/raw_data/fender_duosonic', 'processed_data/fender_duosonic')
+preprocess_folder('data/raw_data/fender_leadii', 'processed_data/fender_leadii')
+preprocess_folder('data/raw_data/fender_toronado', 'processed_data/fender_toronado')
+preprocess_folder('data/raw_data/fender_performer', 'processed_data/fender_performer')
+preprocess_folder('data/raw_data/fender_starcaster', 'processed_data/fender_starcaster')
