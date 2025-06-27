@@ -20,6 +20,6 @@ def build_model(input_shape=(512, 512, 3)):
 
     model.add(layers.BatchNormalization())
 
-    model.add(layers.Dense(3, activation='softmax'))
+    model.add(layers.Dense(10, activation='softmax'))
 
     return model
