@@ -1,6 +1,6 @@
 beautifulsoup4
 requests
-tensorflow-gpu
+tensorflow
 numpy
 pillow
 flask
