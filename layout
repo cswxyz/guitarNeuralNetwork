@@ -4,11 +4,11 @@ guitarNeuralNetwork/
 │   ├── processed_data
 │   │    ├── fender_jaguar
 │   │    ├── fender_stratocaster    (500, 512x512 images)
-│   │    └── fender_telecaster
+│   │    └── ...
 │   ├── raw_data
 │   │    ├── fender_jaguar
 │   │    ├── fender_stratocaster    (500 raw images)
-│   │    └── fender_telecaster
+│   │    └── ...
 │   └── uploads                     (Temporarily saves uploaded images for model analysis)
 │
 ├── models/
