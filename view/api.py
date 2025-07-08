@@ -42,7 +42,7 @@ def preprocess_image(image_path):
     return image
 
 # Define your class names
-class_names = ['Jaguar', 'Stratocaster', 'Telecaster']
+class_names = ['Duo-Sonic', 'Jaguar', 'Jazzmaster', 'Lead II', 'Mustang', 'Performer', 'Starcaster', 'Stratocaster', 'Telecaster', 'Toronado']
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
